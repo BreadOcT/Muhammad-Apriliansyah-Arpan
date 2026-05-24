@@ -1,0 +1,21 @@
+{
+  "short_name": "M A Arpan",
+  "name": "Portofolio Muhammad Apriliansyah Arpan",
+  "icons": [
+    {
+      "src": "../MAA.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "../MAA.png",
+      "type": "image/png",
+      "sizes": "512x512",
+      "purpose": "maskable"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff"
+}
