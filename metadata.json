@@ -1,0 +1,6 @@
+{
+  "name": "M.A. Arpan Portfolio",
+  "description": "Portofolio profesional dan modern untuk M.A. Arpan",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

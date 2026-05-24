@@ -1,0 +1,87 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap');
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+}
+
+body {
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+.tech-grid {
+  background-image: radial-gradient(currentColor 1.5px, transparent 1.5px);
+  background-size: 28px 28px;
+}
+
+/* Custom global styles for the super dark reveal mode */
+.dark-page-transition {
+  transition: background-color 0.5s ease, color 0.5s ease, border-color 0.5s ease;
+}
+
+/* Spotlight elements behavior */
+@media (hover: hover) {
+  .dark .reveal-glow-border {
+    position: relative;
+    border-color: rgb(24, 24, 27) !important; /* Zinc-900 absolute dark border */
+  }
+
+  /* Reveal a subtle glowing overlay border via cursor variable */
+  .dark .reveal-glow-border::before {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    background: radial-gradient(
+      280px circle at var(--mouse-x, -1000px) var(--mouse-y, -1000px),
+      rgba(255, 255, 255, 0.22) 0%,
+      transparent 100%
+    );
+    border-radius: inherit;
+    pointer-events: none;
+    z-index: 1;
+    transition: background 0.15s ease;
+  }
+
+  /* Subtle reveal key texts in dark mode unless hovered or closer to spotlight */
+  .dark .reveal-glow-text {
+    background: radial-gradient(
+      320px circle at var(--mouse-x, -1000px) var(--mouse-y, -1000px),
+      rgba(255, 255, 255, 1) 0%,
+      rgba(255, 255, 255, 0.4) 60%,
+      rgba(113, 113, 122, 0.25) 100%
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    transition: background 0.15s ease;
+  }
+}
+
+/* Override and disable all text dimming, clipping, and spotlight gradients on mobile screens so all content is clear and bright */
+@media (max-width: 767px) {
+  .dark .reveal-glow-text {
+    background: none !important;
+    -webkit-background-clip: unset !important;
+    -webkit-text-fill-color: var(--color-zinc-50, #fafafa) !important;
+    color: var(--color-zinc-50, #fafafa) !important;
+  }
+
+  .dark .reveal-glow-border {
+    border-color: var(--color-zinc-800, #27272a) !important;
+  }
+
+  .dark .reveal-glow-border::before {
+    display: none !important;
+  }
+}
