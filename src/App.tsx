@@ -326,10 +326,8 @@ const AwardCard = ({ item, index, isDarkMode }: { item: any, index: number, isDa
 
 // --- Beautiful Glowing/Explanatory CV Button Component ---
 const CvButton = ({ className = "" }: { className?: string }) => {
-  const [showGuide, setShowGuide] = useState(false);
-
   return (
-    <div className="relative inline-block" onMouseEnter={() => setShowGuide(true)} onMouseLeave={() => setShowGuide(false)}>
+    <div className="relative inline-block">
       <a 
         href="/files/cv-arpan.pdf"
         download="CV_Muhammad_Apriliansyah_Arpan.pdf"
@@ -338,27 +336,6 @@ const CvButton = ({ className = "" }: { className?: string }) => {
         <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
         <span>UNDUH CV</span>
       </a>
-
-      {/* Elegant Explanatory Tooltip ("diterangkan") for configuration */}
-      <AnimatePresence>
-        {showGuide && (
-          <motion.div
-            initial={{ opacity: 0, y: 10, scale: 0.95 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: 10, scale: 0.95 }}
-            transition={{ duration: 0.2 }}
-            className="absolute bottom-full mb-3 left-1/2 -translate-x-1/2 w-72 bg-neutral-900 border border-zinc-805 text-zinc-150 p-4 text-left shadow-2xl rounded-xs z-50 text-[11px] leading-relaxed hidden lg:block"
-          >
-            <div className="absolute top-full left-1/2 -translate-x-1/2 -mt-1.5 border-4 border-transparent border-t-neutral-900 animate-pulse"></div>
-            <p className="font-bold text-emerald-400 text-[10px] tracking-widest uppercase mb-1.5">💡 PETUNJUK KUSTOMISASI CV:</p>
-            <p className="mb-1 text-zinc-300">Untuk mengganti berkas CV demo ini dengan CV asli Anda langsung:</p>
-            <ol className="list-decimal list-inside space-y-1 text-zinc-400">
-              <li>Ubah nama file CV asli menjadi <span className="font-semibold text-emerald-400 text-[10px]">`cv-arpan.pdf`</span>.</li>
-              <li>Unggah/letakkan file itu di folder <span className="font-bold text-zinc-200">`/files/`</span> di editor ini.</li>
-            </ol>
-          </motion.div>
-        )}
-      </AnimatePresence>
     </div>
   );
 };
@@ -436,12 +413,7 @@ const Navbar = ({ isDarkMode, toggleDarkMode }: { isDarkMode: boolean, toggleDar
               </a>
             ))}
             <div className="mt-4 flex flex-col gap-5">
-              <div className="w-full flex flex-col items-center">
-                <CvButton className="w-full py-4 text-center flex justify-center" />
-                <p className="text-[10px] text-zinc-455 dark:text-zinc-400 mt-2 text-center leading-relaxed">
-                  💡 Taruh nama berkas <strong className="font-semibold text-emerald-600 dark:text-emerald-400">cv-arpan.pdf</strong> di folder <strong className="font-semibold">/files/</strong> untuk kustomisasi CV.
-                </p>
-              </div>
+              <CvButton className="w-full py-4 text-center flex justify-center animate-none" />
               <a 
                 href="#contact"
                 onClick={() => setIsMobileMenuOpen(false)}
@@ -513,13 +485,7 @@ const Hero = ({ isDarkMode }: { isDarkMode: boolean }) => {
               </a>
             </div>
             
-            {/* Highly detailed persistent CV explanation guide ("diterangkan jika diakses") */}
-            <div className="flex items-start gap-2.5 text-xs text-zinc-500 dark:text-zinc-450 mt-1 pl-2 font-sans leading-relaxed border-l-2 border-dashed border-emerald-500/30 max-w-lg">
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse mt-1.5 shrink-0"></span>
-              <span>
-                <strong>Panduan CV:</strong> Letakkan/upload file CV asli Anda dengan memberi nama <strong className="text-emerald-600 dark:text-emerald-400 font-semibold bg-emerald-500/10 px-1 py-0.5 rounded-xs">`cv-arpan.pdf`</strong> ke dalam folder <strong className="text-zinc-800 dark:text-zinc-200 font-semibold bg-zinc-200/50 dark:bg-zinc-900 px-1 py-0.5 rounded-xs">`/files/`</strong> di dalam editor pengodean ini untuk mengubah isi berkas CV secara otomatis.
-              </span>
-            </div>
+            {/* Hero CTA buttons end */}
           </motion.div>
 
           {/* Photo Section - Order 1 on Mobile (shows first!), 2 on Desktop */}
